@@ -21,6 +21,7 @@ import net.sandius.rembulan.util.CharsetEncoderByteIterator;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.Arrays;
@@ -204,7 +205,7 @@ class StringByteString extends ByteString {
 	}
 
 	@Override
-	public void putTo(ByteBuffer buffer) {
+	public void putTo(ByteBuffer buffer) throws BufferOverflowException {
 		// ByteBuffer cannot be directly extended: it's safe to use a possibly cached array
 		buffer.put(toBytes());
 	}
